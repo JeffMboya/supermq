@@ -3,17 +3,17 @@
 
 openapi: 3.0.1
 info:
-  title: Magistrala Provision service
+  title: SuperMQ Provision service
   description: |
     HTTP API for Provision service
     Some useful links:
-    - [The Magistrala repository](https://github.com/absmach/magistrala)
+    - [The SuperMQ repository](https://github.com/absmach/supermq)
   contact:
     email: info@abstracmachines.fr
   license:
     name: Apache 2.0
-    url: https://github.com/absmach/magistrala/blob/main/LICENSE
-  version: 0.14.0
+    url: https://github.com/absmach/supermq/blob/main/LICENSE
+  version: 0.15.1
 
 servers:
   - url: http://localhost:9016
@@ -24,7 +24,7 @@ tags:
     description: Everything about your Provision
     externalDocs:
       description: Find out more about provision
-      url: https://docs.magistrala.abstractmachines.fr/
+      url: https://docs.supermq.abstractmachines.fr/
 
 paths:
   /{domainID}/mapping:
@@ -44,6 +44,8 @@ paths:
           description: Failed due to malformed JSON.
         "401":
           description: Missing or invalid access token provided.
+        "403":
+          description: Failed to perform authorization over the entity.
         "415":
           description: Missing or invalid content type.
         "422":
@@ -64,6 +66,8 @@ paths:
           $ref: "#/components/responses/ProvisionRes"
         "401":
           description: Missing or invalid access token provided.
+        "403":
+          description: Failed to perform authorization over the entity.
         "415":
           description: Missing or invalid content type.
         "422":
@@ -115,7 +119,7 @@ components:
       content:
         application/health+json:
           schema:
-            $ref: "./schemas/HealthInfo.yml"
+            $ref: "./schemas/health_info.yml"
 
   securitySchemes:
     bearerAuth:
