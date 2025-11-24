@@ -24,7 +24,7 @@ tags:
     description: CRUD operations for your domains
     externalDocs:
       description: Find out more about domains
-      url: https://docs.magistrala.abstractmachines.fr/
+      url: https://docs.supermq.abstractmachines.fr/
   - name: Roles
     description: All operations involving roles for domains
     externalDocs:
@@ -39,7 +39,7 @@ tags:
     description: Service health check endpoint.
     externalDocs:
       description: Find out more about health check
-      url: https://docs.magistrala.abstractmachines.fr/
+      url: https://docs.supermq.abstractmachines.fr/
 
 paths:
   /domains:
@@ -78,9 +78,9 @@ paths:
         - $ref: "#/components/parameters/Metadata"
         - $ref: "#/components/parameters/Status"
         - $ref: "#/components/parameters/DomainName"
-        - $ref: "#/components/parameters/Actions"
-        - $ref: "#/components/parameters/RoleID"
-        - $ref: "#/components/parameters/RoleName"
+        - $ref: "./schemas/roles.yaml#/components/parameters/ActionsQuery"
+        - $ref: "./schemas/roles.yaml#/components/parameters/RoleIDQuery"
+        - $ref: "./schemas/roles.yaml#/components/parameters/RoleNameQuery"
         - $ref: "#/components/parameters/AccessType"
         - $ref: "#/components/parameters/OnlyTotal"
       tags:
@@ -1260,31 +1260,6 @@ components:
           - desc
       required: false
       example: desc
-    Actions:
-      name: actions
-      description: Lists domains that the user has the given actions on. Multiple actions can be specified separated by comma.
-      in: query
-      schema:
-        type: string
-      required: false
-      example: "action1,action2"
-    RoleID:
-      name: role_id
-      description: List domains that the user has the given role ID on.
-      in: query
-      schema:
-        type: string
-        format: uuid
-      required: false
-      example: bb7edb32-2eac-4aad-aebe-ed96fe073879
-    RoleName:
-      name: role_name
-      description: List domains that the user has the given role name on.
-      in: query
-      schema:
-        type: string
-      required: false
-      example: admin
     AccessType:
       name: access_type
       description: Type of access the user has on the domain.
